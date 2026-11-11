@@ -71,4 +71,6 @@ Sign Up stores the password as plain text in `localStorage` only because this is
 - Data: [DummyJSON](https://dummyjson.com)
 - Friends / classmates who helped: <write names or "none">
 
-# 10X-final-kirvalide
+
+## Live Demo
+🌐 საიტის ნახვა შეგიძლია აქ: [10x-shop Live Link](https://10x-shop-kirvalidze-nana-1nsb.vercel.app)
