@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+/* Dark mode variant: works with <html data-theme="dark"> (used as `dark:` in className) */
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+/* Design tokens (Tailwind v4 @theme) -> bg-brand, text-ink, border-line, bg-pop, shadow-pop ... */
+@theme {
+  --font-display: "Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif;
+
+  --color-brand: #6d28d9;
+  --color-brand-strong: #5b21b6;
+  --color-on-brand: #ffffff;
+
+  /* playful accents (always paired with dark text: text-on-pop) */
+  --color-pop: #ffd23f;
+  --color-hot: #ff6b9d;
+  --color-mint: #3ddc97;
+  --color-on-pop: #14102b;
+
+  --color-surface: #ffffff;
+  --color-surface-muted: #f1ecff;
+  --color-ink: #14102b;
+  --color-ink-muted: #5b5478;
+  --color-line: #14102b;
+  --color-shadow: #14102b;
+  --color-dot: #d8cdfa;
+
+  /* "hard" offset shadows = the neo-brutalist look */
+  --shadow-pop: 3px 3px 0 0 var(--color-shadow);
+  --shadow-pop-lg: 6px 6px 0 0 var(--color-shadow);
+}
+
+[data-theme="dark"] {
+  --color-brand: #a78bfa;
+  --color-brand-strong: #c4b5fd;
+  --color-on-brand: #14102b;
+
+  --color-surface: #1b1535;
+  --color-surface-muted: #0f0b1f;
+  --color-ink: #f5f1ff;
+  --color-ink-muted: #b4a9d6;
+  --color-line: #b9a6ff;
+  --color-shadow: #7c3aed;
+  --color-dot: #231b44;
+}
+
+body {
+  background-color: var(--color-surface-muted);
+  background-image: radial-gradient(var(--color-dot) 1.4px, transparent 1.4px);
+  background-size: 22px 22px;
+  color: var(--color-ink);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+::selection { background: var(--color-pop); color: var(--color-on-pop); }
+
+@keyframes marquee { to { transform: translateX(-50%); } }
+@keyframes pop { 0% { transform: scale(0.5); } 60% { transform: scale(1.35); } 100% { transform: scale(1); } }
+@keyframes float { 0%, 100% { transform: translateY(0) rotate(-8deg); } 50% { transform: translateY(-12px) rotate(8deg); } }
+
+/* Animations only for people who did not ask for reduced motion */
+@media (prefers-reduced-motion: no-preference) {
+  .animate-marquee { animation: marquee 30s linear infinite; }
+  .animate-pop { animation: pop 0.35s ease-out; }
+  .animate-float { animation: float 4s ease-in-out infinite; }
+}
+
+/* confetti (easter egg) */
+.confetti-piece { position: absolute; top: -20px; border-radius: 2px; opacity: 0; }
+@keyframes confetti-fall {
+  0% { opacity: 1; transform: translateY(0) rotate(0deg); }
+  100% { opacity: 1; transform: translateY(110vh) rotate(720deg); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .confetti-piece { animation-name: confetti-fall; animation-timing-function: linear; animation-fill-mode: forwards; }
+}
