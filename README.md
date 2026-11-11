@@ -1,3 +1,4 @@
+ HEAD
 # 10X Shop
 
 ## About
@@ -69,3 +70,5 @@ Sign Up stores the password as plain text in `localStorage` only because this is
 - AI assistance: Claude (see `ai-log.md`)
 - Data: [DummyJSON](https://dummyjson.com)
 - Friends / classmates who helped: <write names or "none">
+
+# 10X-final-kirvalide
